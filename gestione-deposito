@@ -1,0 +1,127 @@
+<div class="contaier" style="box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+background-color: #eceff1;height: 744px;;">
+
+
+  <!--START  MENU OF  REGIONE-PROVINCIA-COMUNE -->
+  <mat-grid-list cols="1" rowHeight="200px" guttersize="20px">
+
+    <!-- REGIONE -->
+    <mat-grid-tile>
+
+      <mat-form-field style=" width: 340px;height: 63px; padding-top: 5px;" appearance="none">
+        <mat-label
+          style="font-family: Roboto;font-size: 16px;font-weight: 300;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;color: #00263d; ">
+          REGIONE</mat-label>
+        <mat-select [(ngModel)]="regioneSelezionata" required>
+
+          <mat-option *ngFor="let a of regione" [value]="a.nome">{{a.nome}}</mat-option>
+
+        </mat-select>
+
+
+      </mat-form-field>
+
+
+
+      <!-- PROVENCIA -->
+
+
+      <mat-form-field style="width: 124px;height: 63px;    padding-top: 5px;" appearance="none">
+        <mat-label
+          style="font-family: Roboto; font-size: 16px;font-weight: 300;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;color: #00263d;">
+          PROV.</mat-label>
+        <mat-select [(ngModel)]="provinceSelezionata" required>
+
+
+          <mat-option *ngFor="let b of province" [value]="b.nome">{{b.nome}}
+          </mat-option>
+
+        </mat-select>
+
+
+      </mat-form-field>
+
+
+
+
+      <!-- COMUNE  -->
+
+
+      <mat-form-field style=" width: 315px;height: 63px;    padding-top: 5px;" appearance="none">
+        <mat-label
+          style="font-family: Roboto;font-size: 16px;font-weight: 300;font-stretch: normal; font-style: normal;line-height: normal;letter-spacing: normal;color: #00263d;  ">
+          COMUNE</mat-label>
+        <mat-select required>
+
+
+          <mat-option>comuni</mat-option>
+
+        </mat-select>
+
+
+      </mat-form-field>
+
+      <button mat-button class="cerca" type="button" (click)="showDeposito(displayDeposito)">
+        <mat-icon>search</mat-icon>CERCA
+      </button>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+  <!--END   MENU REGIONE-PROVINCIA-COMUNE -->
+
+
+  <!-- START NAME OF DEPOSIT -->
+  <mat-grid-list cols="1" rowHeight="100px" gutters="40px">
+    <mat-grid-tile *ngFor="let deposito of collection | paginate:{ itemsPerPage:4, currentPage: p}">
+      <table *ngIf="displayDeposito">
+        <tr style="background-color: #ffffff">
+          <td>
+            <div class="depositName">
+              {{deposito}} </div>
+          </td>
+
+          <td><a routerLink="nomeDeposito"><button mat-button class="details">
+                <mat-icon>zoom_in</mat-icon>DETTAGLIO
+              </button></a>
+          </td>
+
+
+
+
+
+
+          <td>
+            <div class="vertical">
+              <button mat-button class="modify">
+
+                <mat-icon>edit</mat-icon>MODIFICA
+              </button>
+            </div>
+          </td>
+
+          <td>
+
+            <div class="vertical">
+              <button mat-button class="delete">
+                <mat-icon>delete</mat-icon>ElEMINA
+              </button></div>
+          </td>
+        </tr>
+      </table>
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+  <!-- END NAME OF DEPOSIT -->
+  <!-- pagination -->
+  <ul>
+    <li>
+
+    </li>
+  </ul>
+  <pagination-controls class="my-pagination" (pageChange)="p =$event" previousLabel="Precedente" nextLabel="Successivo"
+    maxSize="5"></pagination-controls>
+
+
+</div>
